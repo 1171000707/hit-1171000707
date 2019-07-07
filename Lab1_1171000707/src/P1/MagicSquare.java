@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 public class MagicSquare {
-      public static boolean isNumber(String str) { //ÅĞ¶ÏÃ¿¸ö·Ö¸îµÄ×Ö·û´®ÊÇ·ñÎªÕûÊı
+      public static boolean isNumber(String str) { //åˆ¤æ–­æ¯ä¸ªåˆ†å‰²çš„å­—ç¬¦ä¸²æ˜¯å¦ä¸ºæ•´æ•°
     	  Pattern pattern = Pattern.compile("[0-9]*");
     	  Matcher isnumber = pattern.matcher(str);
     	  if(!isnumber.matches()) {
@@ -20,73 +20,67 @@ public class MagicSquare {
 	 static boolean isLegalMagicSquare(String fileName)  throws IOException {
 		try {
 			FileReader file = new FileReader(fileName);
-		    BufferedReader buffer = new BufferedReader(file); //´ÓÎÄ¼şÖĞ¶ÁÈ¡Êı¾İ
-		    ArrayList<String> str = new ArrayList<String>(); //½¨Á¢¶¯Ì¬×Ö·û´®Êı×é´æ´¢¶ÁÈ¡µÄÃ¿Ò»ĞĞµÄÄÚÈİ
+		    BufferedReader buffer = new BufferedReader(file); //ä»æ–‡ä»¶ä¸­è¯»å–æ•°æ®
+		    ArrayList<String> str = new ArrayList<String>(); //å»ºç«‹åŠ¨æ€å­—ç¬¦ä¸²æ•°ç»„å­˜å‚¨è¯»å–çš„æ¯ä¸€è¡Œçš„å†…å®¹
 		    String line = null;
 		    while((line = buffer.readLine()) != null){
-		    	str.add(new String(line)); //°´ĞĞ¶ÁÈ¡£¬¼ÓÈë×Ö·û´®Êı×é
+		    	str.add(new String(line)); //æŒ‰è¡Œè¯»å–ï¼ŒåŠ å…¥å­—ç¬¦ä¸²æ•°ç»„
 		    }
-		    int n = str.size();	 //»ñµÃ¾ØÕóµÄĞĞÊı
+		    int n = str.size();	 //è·å¾—çŸ©é˜µçš„è¡Œæ•°
 		    file.close();
 		    buffer.close();	
-		    String [][]da = new String[n][n];//´æ·Å·Ö¸îÍêºóÃ¿Ò»¸ö×Ö·û´®
-			int [][]data = new int[n][n]; //½«×Ö·û´®×ª»»³ÉintĞÍºóµÄÊı¾İ´æÈë¸ÃintĞÍÊı×é
+		    String [][]da = new String[n][n];//å­˜æ”¾åˆ†å‰²å®Œåæ¯ä¸€ä¸ªå­—ç¬¦ä¸²
+			int [][]data = new int[n][n]; //å°†å­—ç¬¦ä¸²è½¬æ¢æˆintå‹åçš„æ•°æ®å­˜å…¥è¯¥intå‹æ•°ç»„
 			int count = 0;
 			int row = n;
 			int column = 0;
 			while(count < row) {
 			    String s = str.get(count);
-				String[] sl =  s.split("\t"); //·Ö¸î¾ØÕóÃ¿Ò»ĞĞµÄÊı¾İ
-				column = sl.length; //¾ØÕóµÄÁĞÊı
-				if(row != column) { //ĞĞÁĞ²»ÏàµÈ»òÕßÃ¿Á½¸öÊı²»ÊÇÓÉ\t·Ö¸îµÄ£¬Ö±½Ó·µ»Ø
-					System.out.println("²»ÊÇ¾ØÕó£¡");
+				String[] sl =  s.split("\t"); //åˆ†å‰²çŸ©é˜µæ¯ä¸€è¡Œçš„æ•°æ®
+				column = sl.length; //çŸ©é˜µçš„åˆ—æ•°
+				if(row != column) { //è¡Œåˆ—ä¸ç›¸ç­‰æˆ–è€…æ¯ä¸¤ä¸ªæ•°ä¸æ˜¯ç”±\tåˆ†å‰²çš„ï¼Œç›´æ¥è¿”å›
+					System.out.println("ä¸æ˜¯çŸ©é˜µï¼");
 					return false;
 				}
 				for(int i = 0;i < column;i++) {
-				
 					da[count][i] = sl[i];
 				}
 				count++;
 			}
 			for(int i = 0;i < row;i++) {
 				for(int j = 0;j< column;j++) {
-					if(!isNumber(da[i][j])) { //ÅĞ¶Ï¸Ã×Ö·û´®±íÊ¾µÄÊÇ·ñÎªÕıÕûÊı£¬Èô²»ÊÇ£¬Ôò·µ»Ø
-						System.out.println("²»ÊÇÕıÕûÊı£¡");
+					if(!isNumber(da[i][j])) { //åˆ¤æ–­è¯¥å­—ç¬¦ä¸²è¡¨ç¤ºçš„æ˜¯å¦ä¸ºæ­£æ•´æ•°ï¼Œè‹¥ä¸æ˜¯ï¼Œåˆ™è¿”å›
+						System.out.println("ä¸æ˜¯æ­£æ•´æ•°ï¼");
 						return false;
 					}	
-					data[i][j] = Integer.valueOf(da[i][j]); //½«¶ÁÈ¡µÄÊı¾İ×ª»»ÎªintĞÍ
+					data[i][j] = Integer.valueOf(da[i][j]); //å°†è¯»å–çš„æ•°æ®è½¬æ¢ä¸ºintå‹
 				}
 			}
 			int sum = 0;
 			int judge = 0;
-			for(count = 0 ;count < column ;count++) {
-				sum += data[0][count] ; //¼ÆËã¾ØÕóµÚÒ»ĞĞµÄºÍ
-			}
-			for(int i = 1;i<row;i++) {   //ÅĞ¶Ï¾ØÕóËùÓĞĞĞµÄºÍÊÇ·ñÏàµÈ
+			for(int i = 1;i<row;i++) {   //åˆ¤æ–­çŸ©é˜µæ‰€æœ‰è¡Œçš„å’Œæ˜¯å¦ç›¸ç­‰
 				for(int j = 0;j < column;j++) {
 					 judge += data[i][j];
+				}
+				if(i == 0) {
+					sum = judge;
+					continue;
 				}
 				if(sum != judge) {
 					return false;
 				}
-				else {
-					judge = 0;
-				}
 			}
-			for(int j = 0;j<column;j++) {   //ÅĞ¶Ï¾ØÕóÃ¿Ò»ÁĞµÄºÍÊÇ·ñºÍµÚÒ»ĞĞÏàÍ¬
+			for(int j = 0;j<column;j++) {   //åˆ¤æ–­çŸ©é˜µæ¯ä¸€åˆ—çš„å’Œæ˜¯å¦å’Œç¬¬ä¸€è¡Œç›¸åŒ
 				for(int i = 0;i < row;i++) {
 					 judge += data[i][j];
 				}
 				if(sum != judge) {
 					return false;
 				}
-				else {
-					judge = 0;
-				}
 			}
 			int judge1 = 0;
 			//System.out.println(judge);
-			for(int i = 0;i<row;i++) {  //ÅĞ¶ÏÁ½¸ö¶Ô½ÇÏßµÄºÍÊÇ·ñºÍµÚÒ»ĞĞÏàÍ¬
+			for(int i = 0;i<row;i++) {  //åˆ¤æ–­ä¸¤ä¸ªå¯¹è§’çº¿çš„å’Œæ˜¯å¦å’Œç¬¬ä¸€è¡Œç›¸åŒ
 				for(int j = 0;j < column;j++) {
 					if((i + j) ==( column-1)) {
 						judge1 += data[i][j];
@@ -105,28 +99,28 @@ public class MagicSquare {
 		return true;	
 	}
 	 public static boolean generateMagicSquare(int n) throws IOException{
-		if((n%2 == 0) || (n < 0)) { //Èç¹ûnÎªÅ¼Êı»ò¸ºÊı£¬ÎŞ·¨Éú³É¾ØÕó£¬»á³öÏÖÔ½½çÎÊÌâ£¬Ö±½Ó·µ»Ø
+		if((n%2 == 0) || (n < 0)) { //å¦‚æœnä¸ºå¶æ•°æˆ–è´Ÿæ•°ï¼Œæ— æ³•ç”ŸæˆçŸ©é˜µï¼Œä¼šå‡ºç°è¶Šç•Œé—®é¢˜ï¼Œç›´æ¥è¿”å›
 			System.out.println(false);
 			return false;
 		 }
 		 int magic[][] = new int[n][n];
 		 int row = 0,col = n / 2,i,j,square = n*n;
 		 for(i = 1;i <= square;i++) {
-			 magic[row][col] = i; //½«1·ÅÔÚµÚÒ»ĞĞ×îÖĞ¼äµÄÎ»ÖÃ
-			 if(i%n == 0)//ÈôÒª·ÅµÄÎ»ÖÃÒÑ¾­ÌîºÃÁËÕûÊı£¬»òÉÏÒ»¸öÕûÊıÔÚ»Ã·½µÄÓÒÉÏ½Ç£¬Ôòµ±Ç°Òª·ÅµÄÕûÊıÓ¦¸ÃÔÚ¸ÃÎ»ÖÃµÄÕıÏÂ·½
+			 magic[row][col] = i; //å°†1æ”¾åœ¨ç¬¬ä¸€è¡Œæœ€ä¸­é—´çš„ä½ç½®
+			 if(i%n == 0)//è‹¥è¦æ”¾çš„ä½ç½®å·²ç»å¡«å¥½äº†æ•´æ•°ï¼Œæˆ–ä¸Šä¸€ä¸ªæ•´æ•°åœ¨å¹»æ–¹çš„å³ä¸Šè§’ï¼Œåˆ™å½“å‰è¦æ”¾çš„æ•´æ•°åº”è¯¥åœ¨è¯¥ä½ç½®çš„æ­£ä¸‹æ–¹
 				 row++;
 			 else {
-				 if(row == 0) //ÈôĞĞÊıÒÑ¾­¼õÎª0£¬ÔòÖØĞÂ´Ó×îµ×ĞĞ¿ªÊ¼
+				 if(row == 0) //è‹¥è¡Œæ•°å·²ç»å‡ä¸º0ï¼Œåˆ™é‡æ–°ä»æœ€åº•è¡Œå¼€å§‹
 					 row = n-1;
 				 else
-					 row--;//ĞĞÊıÑØ×ÔÏÂÏòÉÏµÄ·½Ïò±ä»¯
-				 if(col == (n-1)) //ÈôÁĞÊıÒÑ¾­Ôö¼Óµ½×îºóÒ»ÁĞ£¬Ôò´ÓµÚÒ»ÁĞÖØĞÂ¿ªÊ¼
+					 row--;//è¡Œæ•°æ²¿è‡ªä¸‹å‘ä¸Šçš„æ–¹å‘å˜åŒ–
+				 if(col == (n-1)) //è‹¥åˆ—æ•°å·²ç»å¢åŠ åˆ°æœ€åä¸€åˆ—ï¼Œåˆ™ä»ç¬¬ä¸€åˆ—é‡æ–°å¼€å§‹
 					 col = 0;
 				 else
-				 col++;//ÁĞÊıÑØ×Ô×óÏòÓÒµÄ·½Ïò±ä»¯
+				 col++;//åˆ—æ•°æ²¿è‡ªå·¦å‘å³çš„æ–¹å‘å˜åŒ–
 			 }
 		 }
-		 File file = new File("src/P1/txt/6.txt");//½«Éú³ÉµÄ¾ØÕóĞ´ÈëÎÄ¼ş
+		 File file = new File("src/P1/txt/6.txt");//å°†ç”Ÿæˆçš„çŸ©é˜µå†™å…¥æ–‡ä»¶
 		 file.createNewFile();
 		 FileWriter output = new FileWriter(file);
 		 
@@ -143,23 +137,23 @@ public class MagicSquare {
 	 }
 	public static void main(String[] args) throws IOException {
 		
-		System.out.println("µÚÒ»¸ö£º");
+		System.out.println("ç¬¬ä¸€ä¸ªï¼š");
 		boolean a = isLegalMagicSquare("src/P1/txt/1.txt");
 		System.out.println(a);
-		System.out.println("µÚ¶ş¸ö£º");
+		System.out.println("ç¬¬äºŒä¸ªï¼š");
 		boolean b = isLegalMagicSquare("src/P1/txt/2.txt");
 		System.out.println(b);
-		System.out.println("µÚÈı¸ö£º");
+		System.out.println("ç¬¬ä¸‰ä¸ªï¼š");
 		boolean c = isLegalMagicSquare("src/P1/txt/3.txt");
 		System.out.println(c);
-		System.out.println("µÚËÄ¸ö£º");
+		System.out.println("ç¬¬å››ä¸ªï¼š");
 		boolean d = isLegalMagicSquare("src/P1/txt/4.txt");
 		System.out.println(d);
-		System.out.println("µÚÎå¸ö£º");
+		System.out.println("ç¬¬äº”ä¸ªï¼š");
 		boolean e = isLegalMagicSquare("src/P1/txt/5.txt");
 		System.out.println(e);
 		generateMagicSquare(7);
 		boolean f = isLegalMagicSquare("src/P1/txt/6.txt");
-		System.out.println("¹¹ÔìµÄ¾ØÕó"+f);
+		System.out.println("æ„é€ çš„çŸ©é˜µ"+f);
 	}
 }
