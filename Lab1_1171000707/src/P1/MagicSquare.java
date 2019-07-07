@@ -57,8 +57,8 @@ public class MagicSquare {
 				}
 			}
 			int sum = 0;
+			int judge = 0;
 			for(int i = 1;i<row;i++) {   //判断矩阵所有行的和是否相等
-				int judge = 0;
 				for(int j = 0;j < column;j++) {
 					 judge += data[i][j];
 				}
@@ -71,7 +71,6 @@ public class MagicSquare {
 				}
 			}
 			for(int j = 0;j<column;j++) {   //判断矩阵每一列的和是否和第一行相同
-				int judge = 0;
 				for(int i = 0;i < row;i++) {
 					 judge += data[i][j];
 				}
